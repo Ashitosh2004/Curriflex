@@ -236,8 +236,29 @@ export default function TimetablePage() {
   const exportToPDF = () => {
     const doc = new jsPDF({ orientation: 'landscape' });
 
-    doc.setFontSize(18);
-    doc.text('Timetable', 14, 20);
+    // Add orange header background
+    doc.setFillColor(255, 140, 0); // Orange
+    doc.rect(0, 0, 297, 35, 'F'); // Full width header
+
+    // Add title
+    doc.setTextColor(255, 255, 255); // White text
+    doc.setFontSize(24);
+    doc.setFont('helvetica', 'bold');
+    doc.text('TIMETABLE', 14, 15);
+
+    // Add department and year info
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    const deptName = departments.find(d => d.id === selectedDepartment)?.name || 'All Departments';
+    const yearText = selectedYear ? `Year ${selectedYear}` : 'All Years';
+    doc.text(`${deptName} - ${yearText}`, 14, 25);
+
+    // Add generation date
+    doc.setFontSize(10);
+    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 220, 25);
+
+    // Reset text color for table
+    doc.setTextColor(0, 0, 0);
 
     const tableData: string[][] = [];
     const headers = ['Time', ...WORKING_DAYS];
@@ -265,9 +286,39 @@ export default function TimetablePage() {
     autoTable(doc, {
       head: [headers],
       body: tableData,
-      startY: 30,
-      styles: { fontSize: 8, cellPadding: 3 },
-      headStyles: { fillColor: [0, 0, 0] },
+      startY: 40,
+      theme: 'grid',
+      styles: {
+        fontSize: 9,
+        cellPadding: 4,
+        lineColor: [40, 40, 40], // Dark borders
+        lineWidth: 0.5,
+        textColor: [40, 40, 40],
+        font: 'helvetica',
+      },
+      headStyles: {
+        fillColor: [255, 140, 0], // Orange header
+        textColor: [255, 255, 255], // White text
+        fontSize: 11,
+        fontStyle: 'bold',
+        halign: 'center',
+        lineColor: [40, 40, 40], // Dark borders
+        lineWidth: 0.75,
+      },
+      bodyStyles: {
+        lineColor: [40, 40, 40], // Dark borders
+        lineWidth: 0.5,
+      },
+      alternateRowStyles: {
+        fillColor: [255, 248, 240], // Light orange tint for alternate rows
+      },
+      columnStyles: {
+        0: {
+          fillColor: [255, 235, 205], // Light orange for time column
+          fontStyle: 'bold',
+          halign: 'center',
+        }
+      },
     });
 
     doc.save('timetable.pdf');

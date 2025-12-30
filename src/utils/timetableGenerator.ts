@@ -147,11 +147,17 @@ export function generateTimetable(input: GeneratorInput): { entries: TimetableEn
   console.log(`Total slots: ${totalSlots}, Total hours needed: ${totalHoursNeeded}`);
   console.log('Subjects:', subjectSchedules.map(s => `${s.subject!.name} (${s.hoursNeeded}h)`).join(', '));
 
-  // Round-robin distribution: cycle through subjects and days
+  // Round-robin distribution with daily variation to avoid same routine
   let currentSubjectIndex = 0;
   let allSubjectsScheduled = false;
+  let dayIndex = 0;
 
   for (const day of workingDays) {
+    // Add random offset for each day to vary the schedule
+    // This prevents Monday-Friday from having identical routines
+    const dayOffset = (dayIndex * 3) % subjectSchedules.length; // Shift by 3 subjects each day
+    let daySubjectIndex = (currentSubjectIndex + dayOffset) % subjectSchedules.length;
+
     for (const slot of lectureSlots) {
       if (allSubjectsScheduled) break;
 
@@ -160,11 +166,11 @@ export function generateTimetable(input: GeneratorInput): { entries: TimetableEn
       const maxAttempts = subjectSchedules.length * 2; // Allow multiple passes
 
       while (attempts < maxAttempts) {
-        const schedule = subjectSchedules[currentSubjectIndex];
+        const schedule = subjectSchedules[daySubjectIndex];
 
         // Check if this subject still needs hours
         if (schedule.hoursScheduled >= schedule.hoursNeeded) {
-          currentSubjectIndex = (currentSubjectIndex + 1) % subjectSchedules.length;
+          daySubjectIndex = (daySubjectIndex + 1) % subjectSchedules.length;
           attempts++;
 
           // Check if all subjects are done
@@ -245,10 +251,13 @@ export function generateTimetable(input: GeneratorInput): { entries: TimetableEn
         schedule.hoursScheduled++;
         console.log(`Scheduled ${schedule.subject!.name} on ${day} at ${slot.startTime} (${schedule.hoursScheduled}/${schedule.hoursNeeded})`);
 
-        currentSubjectIndex = (currentSubjectIndex + 1) % subjectSchedules.length;
+        daySubjectIndex = (daySubjectIndex + 1) % subjectSchedules.length;
         break; // Successfully scheduled, move to next slot
       }
     }
+
+    // Increment day counter for next day's offset
+    dayIndex++;
   }
 
   // Check for subjects that couldn't be fully scheduled
@@ -262,6 +271,74 @@ export function generateTimetable(input: GeneratorInput): { entries: TimetableEn
       console.warn(`⚠️ ${schedule.subject!.name}: only ${schedule.hoursScheduled}/${schedule.hoursNeeded} hours scheduled`);
     } else {
       console.log(`✅ ${schedule.subject!.name}: ${schedule.hoursScheduled}/${schedule.hoursNeeded} hours scheduled`);
+    }
+  }
+
+  // Fill empty Friday slots with Library/Self-Study hours
+  const fridayEntries = entries.filter(e => e.day === 'Friday');
+  console.log(`Friday has ${fridayEntries.length} scheduled classes`);
+
+  if (workingDays.includes('Friday') && fridayEntries.length < lectureSlots.length) {
+    console.log('Adding Library/Self-Study hours to fill empty Friday slots...');
+
+    for (const slot of lectureSlots) {
+      const slotKey = `Friday-${slot.id}`;
+      const existingEntry = entries.find(e => e.day === 'Friday' && e.timeSlotId === slot.id);
+
+      if (!existingEntry) {
+        // Find an available room for library hour
+        let libraryRoom: Room | undefined;
+        for (const room of rooms) {
+          const roomKey = availability.rooms.get(room.id) || new Set();
+          if (!roomKey.has(slotKey)) {
+            libraryRoom = room;
+            break;
+          }
+        }
+
+        if (libraryRoom) {
+          entries.push({
+            id: `entry-library-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            day: 'Friday',
+            timeSlotId: slot.id,
+            timeSlot: slot,
+            subjectId: 'library-hour',
+            subject: {
+              id: 'library-hour',
+              name: 'Library / Self-Study',
+              code: 'LIB',
+              type: 'theory',
+              weeklyHours: 0,
+              labRequired: false,
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            } as Subject,
+            facultyId: 'self-study',
+            faculty: {
+              id: 'self-study',
+              name: 'Self-Study',
+              email: '',
+              phone: '',
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            } as Faculty,
+            roomId: libraryRoom.id,
+            room: libraryRoom,
+            classId,
+            departmentId,
+            year,
+            isLocked: false,
+          });
+
+          // Mark room as used
+          if (!availability.rooms.has(libraryRoom.id)) {
+            availability.rooms.set(libraryRoom.id, new Set());
+          }
+          availability.rooms.get(libraryRoom.id)!.add(slotKey);
+
+          console.log(`Added Library/Self-Study on Friday at ${slot.startTime}`);
+        }
+      }
     }
   }
 
