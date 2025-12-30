@@ -252,7 +252,7 @@ This project is licensed under the MIT License.
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Contact: ashitoshpandey2004@gmail.com
+- Contact: ashitoshingale8@gmail.com
 
 ---
 
