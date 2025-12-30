@@ -1,0 +1,408 @@
+@import url("https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* iOS 26 Liquid Glass Design System */
+
+@layer base {
+  :root {
+    /* Modern Orange Theme */
+    --background: 30 20% 98%;
+    --foreground: 30 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 10%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 15% 95%;
+    --secondary-foreground: 30 10% 20%;
+
+    --muted: 30 15% 93%;
+    --muted-foreground: 30 10% 40%;
+
+    --accent: 32 98% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 24 95% 53%;
+
+    --radius: 1rem;
+
+    /* Sidebar - Modern Glass */
+    --sidebar-background: 24 65% 12%;
+    --sidebar-foreground: 30 20% 98%;
+    --sidebar-primary: 24 95% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 32 98% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 24 50% 20%;
+    --sidebar-ring: 24 95% 53%;
+    --sidebar: 24 65% 12%;
+
+    /* Chart colors - Orange palette */
+    --chart-1: 24 95% 53%;
+    --chart-2: 32 98% 45%;
+    --chart-3: 16 90% 50%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 12 85% 45%;
+
+    /* Glass effect variables */
+    --glass-bg: 0 0% 100% / 0.85;
+    --glass-border: 24 95% 53% / 0.15;
+    --glass-blur: 24px;
+    --glass-shadow: 0 8px 32px 0 rgba(249, 115, 22, 0.1);
+
+    /* Fonts */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-mono: 'SF Mono', 'Monaco', 'Consolas', monospace;
+
+    /* Smooth shadows */
+    --shadow-2xs: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    --shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+    --shadow-sm: 0 2px 8px 0 rgba(249, 115, 22, 0.06);
+    --shadow: 0 4px 16px 0 rgba(249, 115, 22, 0.08);
+    --shadow-md: 0 8px 24px 0 rgba(249, 115, 22, 0.1);
+    --shadow-lg: 0 12px 40px 0 rgba(249, 115, 22, 0.12);
+    --shadow-xl: 0 20px 50px 0 rgba(249, 115, 22, 0.15);
+    --shadow-2xl: 0 25px 60px 0 rgba(249, 115, 22, 0.18);
+
+    --tracking-normal: -0.01em;
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: 24 50% 6%;
+    --foreground: 30 20% 95%;
+
+    --card: 24 45% 10%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 24 45% 10%;
+    --popover-foreground: 30 20% 95%;
+
+    --primary: 24 95% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 24 30% 15%;
+    --secondary-foreground: 30 20% 90%;
+
+    --muted: 24 30% 12%;
+    --muted-foreground: 30 15% 65%;
+
+    --accent: 32 98% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 24 35% 22%;
+    --input: 24 35% 22%;
+    --ring: 24 95% 58%;
+
+    /* Sidebar dark */
+    --sidebar-background: 24 55% 8%;
+    --sidebar-foreground: 30 20% 90%;
+    --sidebar-primary: 24 95% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 32 98% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 24 40% 15%;
+    --sidebar-ring: 24 95% 58%;
+    --sidebar: 24 55% 8%;
+
+    /* Chart colors dark */
+    --chart-1: 24 95% 58%;
+    --chart-2: 32 98% 50%;
+    --chart-3: 16 90% 55%;
+    --chart-4: 38 92% 55%;
+    --chart-5: 12 85% 50%;
+
+    /* Glass effect dark */
+    --glass-bg: 24 45% 10% / 0.9;
+    --glass-border: 24 95% 58% / 0.2;
+    --glass-blur: 24px;
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+
+    /* Shadows dark */
+    --shadow-2xs: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    --shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+    --shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 24px 0 rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 50px 0 rgba(0, 0, 0, 0.45);
+    --shadow-2xl: 0 25px 60px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Glassmorphism utility classes */
+@layer components {
+  .glass {
+    @apply bg-card/70 backdrop-blur-xl border border-border/30;
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-subtle {
+    @apply bg-card/50 backdrop-blur-lg border border-border/20;
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-2xl border border-border/60 shadow-lg;
+  }
+
+  .glass-button {
+    @apply bg-primary/90 backdrop-blur-md hover:bg-primary transition-all duration-300 ease-out;
+  }
+
+  .glass-input {
+    @apply bg-muted/50 backdrop-blur-sm border border-border/50 focus:border-primary/50 transition-all duration-200;
+  }
+}
+
+/* Smooth animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-fade-out {
+  animation: fade-out 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-blur-in {
+  animation: blur-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Smooth transitions for all interactive elements */
+@layer utilities {
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .transition-fast {
+    @apply transition-all duration-150 ease-out;
+  }
+
+  .transition-slow {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-scale {
+    @apply transition-all duration-200 ease-out hover:scale-[1.02];
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 ease-out hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)];
+  }
+
+  .active-scale {
+    @apply active:scale-[0.98] transition-transform duration-100;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary to-accent;
+  }
+
+  .gradient-subtle {
+    @apply bg-gradient-to-br from-background via-background to-muted/50;
+  }
+
+  .gradient-glass {
+    background: linear-gradient(135deg,
+        hsl(var(--card) / 0.9) 0%,
+        hsl(var(--card) / 0.7) 50%,
+        hsl(var(--card) / 0.8) 100%);
+  }
+
+  /* iOS-style blur backgrounds */
+  .blur-bg {
+    @apply backdrop-blur-xl bg-background/80;
+  }
+
+  .blur-bg-heavy {
+    @apply backdrop-blur-3xl bg-background/90;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Selection styling */
+::selection {
+  background: hsl(var(--primary) / 0.2);
+  color: hsl(var(--foreground));
+}
