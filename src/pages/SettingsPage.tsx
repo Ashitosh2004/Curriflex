@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useApp } from '@/contexts/AppContext';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Settings, Database, Palette, School, GraduationCap, Building2, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import type { InstitutionType } from '@/types';
@@ -61,15 +62,7 @@ export default function SettingsPage() {
                 Toggle between light and dark themes
               </p>
             </div>
-            <Button
-              onClick={toggleDarkMode}
-              className={`rounded-xl transition-all duration-300 ${isDarkMode
-                ? 'bg-gradient-to-r from-primary to-accent hover:opacity-90'
-                : 'bg-secondary hover:bg-secondary/80 text-foreground'
-                }`}
-            >
-              {isDarkMode ? '🌙 Dark' : '☀️ Light'}
-            </Button>
+            <ThemeToggle />
           </div>
         </CardContent>
       </Card>
@@ -144,12 +137,6 @@ export default function SettingsPage() {
             <div>
               <p className="text-sm text-muted-foreground">Curriflex</p>
               <p className="text-xs text-muted-foreground/70">Version 1.0.0</p>
-            </div>
-            <div className="text-right">
-              <p className="text-sm text-muted-foreground">Powered by</p>
-              <p className="text-xs font-medium bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Firebase + React
-              </p>
             </div>
           </div>
         </CardContent>

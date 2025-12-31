@@ -182,14 +182,14 @@ export default function Dashboard() {
             {features.map((feature, index) => (
               <div key={feature.title} className="flex gap-3 p-3 rounded-xl hover:bg-secondary/30 transition-colors">
                 <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${index === 0 ? 'from-chart-1/20 to-chart-1/5' :
-                    index === 1 ? 'from-chart-2/20 to-chart-2/5' :
-                      index === 2 ? 'from-chart-3/20 to-chart-3/5' :
-                        'from-chart-4/20 to-chart-4/5'
+                  index === 1 ? 'from-chart-2/20 to-chart-2/5' :
+                    index === 2 ? 'from-chart-3/20 to-chart-3/5' :
+                      'from-chart-4/20 to-chart-4/5'
                   }`}>
                   <feature.icon className={`h-5 w-5 ${index === 0 ? 'text-chart-1' :
-                      index === 1 ? 'text-chart-2' :
-                        index === 2 ? 'text-chart-3' :
-                          'text-chart-4'
+                    index === 1 ? 'text-chart-2' :
+                      index === 2 ? 'text-chart-3' :
+                        'text-chart-4'
                     }`} />
                 </div>
                 <div>

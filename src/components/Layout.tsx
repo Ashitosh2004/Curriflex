@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { useApp } from '@/contexts/AppContext';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import {
   Calendar,
   Users,
@@ -11,8 +11,6 @@ import {
   Settings,
   Home,
   Clock,
-  Sun,
-  Moon,
   Menu,
   X,
   Layers,
@@ -21,16 +19,16 @@ import {
 import { useState } from 'react';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: Home },
-  { name: 'Timetable', href: '/timetable', icon: Calendar },
-  { name: 'Faculty', href: '/faculty', icon: Users },
-  { name: 'Students', href: '/students', icon: GraduationCap },
-  { name: 'Subjects', href: '/subjects', icon: BookOpen },
-  { name: 'Rooms', href: '/rooms', icon: DoorOpen },
-  { name: 'Departments', href: '/departments', icon: Building2 },
-  { name: 'Subject Allocation', href: '/subject-allocation', icon: Users },
-  { name: 'Time Config', href: '/time-config', icon: Clock },
-  { name: 'Settings', href: '/settings', icon: Settings },
+  { name: 'Dashboard', href: '/', icon: Home, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Timetable', href: '/timetable', icon: Calendar, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Faculty', href: '/faculty', icon: Users, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Students', href: '/students', icon: GraduationCap, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Subjects', href: '/subjects', icon: BookOpen, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Rooms', href: '/rooms', icon: DoorOpen, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Departments', href: '/departments', icon: Building2, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Subject Allocation', href: '/subject-allocation', icon: Layers, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Time Config', href: '/time-config', icon: Clock, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Settings', href: '/settings', icon: Settings, color: 'from-blue-500 to-cyan-500' },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -39,42 +37,55 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Background Gradient */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-400/10 via-cyan-400/10 to-transparent rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-cyan-400/10 via-blue-400/10 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden transition-all duration-300"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* Sidebar - Modern Glass Effect */}
+      {/* Sidebar - Liquid Glass Effect */}
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-50 w-72 transform transition-all duration-500 ease-ios lg:translate-x-0',
-          'bg-sidebar backdrop-blur-2xl border-r border-sidebar-border',
-          'shadow-xl',
+          'fixed inset-y-0 left-0 z-50 w-72 transform transition-all duration-500 ease-out lg:translate-x-0',
+          'backdrop-blur-2xl bg-gradient-to-b from-white/80 via-white/70 to-white/80 dark:from-gray-900/80 dark:via-gray-900/70 dark:to-gray-900/80',
+          'border-r border-white/20 dark:border-gray-700/30',
+          'shadow-2xl shadow-purple-500/5',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        <div className="flex h-16 items-center justify-between border-b border-border/30 px-6">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 pointer-events-none" />
+
+        {/* Header */}
+        <div className="relative flex h-16 items-center justify-between border-b border-white/10 dark:border-gray-700/30 px-6 backdrop-blur-xl">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="p-2 rounded-xl bg-sidebar-primary/10 group-hover:bg-sidebar-primary/20 transition-all duration-300 group-hover:scale-105">
+            <div className="relative p-2 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/20">
               <img src="/logo.png" alt="Curriflex Logo" className="h-8 w-8 object-contain" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <span className="text-lg font-semibold tracking-tight text-sidebar-foreground">
+            <span className="text-lg font-bold text-gray-900 dark:text-white">
               Curriflex
             </span>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-2 rounded-xl hover:bg-sidebar-accent transition-colors duration-200"
+            className="lg:hidden p-2 rounded-xl hover:bg-white/10 dark:hover:bg-gray-800/50 transition-all duration-200 active:scale-95"
           >
-            <X className="h-5 w-5 text-sidebar-foreground" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
-        <nav className="flex flex-col gap-1 p-4">
+        {/* Navigation */}
+        <nav className="relative flex flex-col gap-2 p-4 overflow-y-auto h-[calc(100vh-4rem)]">
           {navigation.map((item, index) => {
             const isActive = location.pathname === item.href;
             return (
@@ -83,56 +94,67 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 to={item.href}
                 onClick={() => setSidebarOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium',
+                  'group relative flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-medium overflow-hidden',
                   'transition-all duration-300 ease-out',
-                  'hover:translate-x-1 hover:shadow-md',
                   isActive
-                    ? 'bg-gradient-to-r from-sidebar-primary to-sidebar-accent text-sidebar-primary-foreground shadow-lg shadow-sidebar-primary/25 scale-[1.02]'
-                    : 'text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/80 hover:scale-[1.01]'
+                    ? 'text-white shadow-lg scale-[1.02]'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:scale-[1.01]'
                 )}
                 style={{
-                  animationDelay: `${index * 50}ms`
+                  animation: `fade-in 0.5s ease-out ${index * 50}ms both`
                 }}
               >
-                <item.icon className={cn(
-                  'h-5 w-5 transition-transform duration-300',
-                  isActive && 'scale-110'
-                )} />
-                {item.name}
+                {/* Active Background Gradient */}
+                {isActive && (
+                  <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-100 rounded-2xl`} />
+                )}
+
+                {/* Hover Background */}
+                {!isActive && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/50 to-white/30 dark:from-gray-800/50 dark:to-gray-800/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl backdrop-blur-sm" />
+                )}
+
+                {/* Glow Effect on Hover */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl`} />
+
+                {/* Icon */}
+                <div className="relative z-10">
+                  <item.icon className={cn(
+                    'h-5 w-5 transition-all duration-300',
+                    isActive ? 'scale-110' : 'group-hover:scale-110'
+                  )} />
+                </div>
+
+                {/* Text */}
+                <span className="relative z-10">{item.name}</span>
+
+                {/* Active Indicator */}
+                {isActive && (
+                  <div className="absolute right-3 w-1.5 h-8 bg-white/50 rounded-full" />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-sidebar to-transparent pointer-events-none" />
+        {/* Bottom Gradient Fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/90 dark:from-gray-900/90 to-transparent pointer-events-none" />
       </aside>
 
       {/* Main content */}
       <div className="lg:pl-72 transition-all duration-300">
         {/* Top bar - Liquid Glass Effect */}
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between px-4 lg:px-6 bg-background/70 backdrop-blur-xl border-b border-border/30 shadow-sm">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between px-4 lg:px-6 backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-b border-white/20 dark:border-gray-700/30 shadow-sm">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden p-2 rounded-xl hover:bg-muted/50 transition-all duration-200 active:scale-95"
+            className="lg:hidden p-2.5 rounded-xl hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-200 active:scale-95 backdrop-blur-sm"
           >
             <Menu className="h-5 w-5" />
           </button>
 
           <div className="flex-1" />
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleDarkMode}
-            className="rounded-xl hover:bg-muted/50 transition-all duration-300 hover:scale-105 active:scale-95"
-          >
-            {isDarkMode ? (
-              <Sun className="h-5 w-5 text-amber-500 transition-transform duration-500 rotate-0 hover:rotate-180" />
-            ) : (
-              <Moon className="h-5 w-5 text-indigo-500 transition-transform duration-500" />
-            )}
-          </Button>
+          <ThemeToggle />
         </header>
 
         {/* Page content with subtle animation */}

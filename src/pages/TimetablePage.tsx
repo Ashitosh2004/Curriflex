@@ -233,29 +233,38 @@ export default function TimetablePage() {
     }
   };
 
-  const exportToPDF = () => {
+  const exportToPDF = async () => {
     const doc = new jsPDF({ orientation: 'landscape' });
+
+    // Add logo to PDF - use direct import path
+    try {
+      // Import logo as base64
+      const logo = '/logo.png';
+      doc.addImage(logo, 'PNG', 10, 5, 20, 20);
+    } catch (error) {
+      console.log('Logo error:', error);
+    }
 
     // Add orange header background
     doc.setFillColor(255, 140, 0); // Orange
-    doc.rect(0, 0, 297, 35, 'F'); // Full width header
+    doc.rect(0, 0, 297, 30, 'F'); // Smaller header
 
     // Add title
     doc.setTextColor(255, 255, 255); // White text
-    doc.setFontSize(24);
+    doc.setFontSize(18); // Smaller title
     doc.setFont('helvetica', 'bold');
-    doc.text('TIMETABLE', 14, 15);
+    doc.text('TIMETABLE', 35, 12);
 
     // Add department and year info
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     const deptName = departments.find(d => d.id === selectedDepartment)?.name || 'All Departments';
     const yearText = selectedYear ? `Year ${selectedYear}` : 'All Years';
-    doc.text(`${deptName} - ${yearText}`, 14, 25);
+    doc.text(`${deptName} - ${yearText}`, 35, 20);
 
     // Add generation date
-    doc.setFontSize(10);
-    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 220, 25);
+    doc.setFontSize(8);
+    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 240, 20);
 
     // Reset text color for table
     doc.setTextColor(0, 0, 0);
@@ -268,7 +277,7 @@ export default function TimetablePage() {
 
       for (const day of WORKING_DAYS) {
         if (slot.type === 'break') {
-          row.push('SHORT BREAK');
+          row.push('BREAK');
         } else if (slot.type === 'lunch') {
           row.push('LUNCH');
         } else {
@@ -286,60 +295,77 @@ export default function TimetablePage() {
     autoTable(doc, {
       head: [headers],
       body: tableData,
-      startY: 40,
+      startY: 32, // Start closer to header
       theme: 'grid',
       styles: {
-        fontSize: 9,
-        cellPadding: 4,
-        lineColor: [40, 40, 40], // Dark borders
-        lineWidth: 0.5,
+        fontSize: 7, // Smaller font
+        cellPadding: 2, // Less padding
+        lineColor: [40, 40, 40],
+        lineWidth: 0.3,
         textColor: [40, 40, 40],
         font: 'helvetica',
+        overflow: 'linebreak',
+        cellWidth: 'wrap',
       },
       headStyles: {
-        fillColor: [255, 140, 0], // Orange header
-        textColor: [255, 255, 255], // White text
-        fontSize: 11,
+        fillColor: [255, 140, 0],
+        textColor: [255, 255, 255],
+        fontSize: 8,
         fontStyle: 'bold',
         halign: 'center',
-        lineColor: [40, 40, 40], // Dark borders
-        lineWidth: 0.75,
+        lineColor: [40, 40, 40],
+        lineWidth: 0.5,
+        cellPadding: 2,
       },
       bodyStyles: {
-        lineColor: [40, 40, 40], // Dark borders
-        lineWidth: 0.5,
+        lineColor: [40, 40, 40],
+        lineWidth: 0.3,
+        minCellHeight: 12, // Smaller cell height
       },
       alternateRowStyles: {
-        fillColor: [255, 248, 240], // Light orange tint for alternate rows
+        fillColor: [255, 248, 240],
       },
       columnStyles: {
         0: {
-          fillColor: [255, 235, 205], // Light orange for time column
+          fillColor: [255, 235, 205],
           fontStyle: 'bold',
           halign: 'center',
+          cellWidth: 25, // Fixed width for time column
         }
       },
+      margin: { left: 10, right: 10 },
+      tableWidth: 'auto',
     });
 
     doc.save('timetable.pdf');
-    toast({ title: 'Exported', description: 'Timetable exported to PDF' });
+    toast({ title: 'Exported', description: 'Timetable exported to PDF with enhanced design' });
   };
 
   const exportToExcel = () => {
-    const wsData: any[][] = [['Time', ...WORKING_DAYS]];
+    // Create header data with styling
+    const deptName = departments.find(d => d.id === selectedDepartment)?.name || 'All Departments';
+    const yearText = selectedYear ? `Year ${selectedYear}` : 'All Years';
+
+    const wsData: any[][] = [
+      ['TIMETABLE'], // Title row
+      [`${deptName} - ${yearText}`], // Department info
+      [`Generated: ${new Date().toLocaleDateString()}`], // Date
+      [], // Empty row
+      ['Time', ...WORKING_DAYS] // Headers
+    ];
 
     for (const slot of timeSlots) {
       const row = [`${slot.startTime} - ${slot.endTime}`];
 
       for (const day of WORKING_DAYS) {
         if (slot.type === 'break') {
-          row.push('SHORT BREAK');
+          row.push('BREAK');
         } else if (slot.type === 'lunch') {
           row.push('LUNCH');
         } else {
           const entry = entries.find(e => e.day === day && e.timeSlotId === slot.id);
           if (entry) {
-            row.push(`${entry.subject?.code || entry.subject?.name} | ${entry.faculty?.name} | ${entry.room?.roomNumber}`);
+            row.push(`${entry.subject?.code || entry.subject?.name}\n${entry.faculty?.name}\n${entry.room?.roomNumber}`);
           } else {
             row.push('-');
           }
@@ -349,10 +375,17 @@ export default function TimetablePage() {
     }
 
     const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+    // Set column widths
+    ws['!cols'] = [
+      { wch: 15 }, // Time column
+      ...WORKING_DAYS.map(() => ({ wch: 20 })) // Day columns
+    ];
+
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Timetable');
     XLSX.writeFile(wb, 'timetable.xlsx');
-    toast({ title: 'Exported', description: 'Timetable exported to Excel' });
+    toast({ title: 'Exported', description: 'Timetable exported to Excel with professional design' });
   };
 
   return (

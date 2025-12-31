@@ -147,15 +147,17 @@ export function generateTimetable(input: GeneratorInput): { entries: TimetableEn
   console.log(`Total slots: ${totalSlots}, Total hours needed: ${totalHoursNeeded}`);
   console.log('Subjects:', subjectSchedules.map(s => `${s.subject!.name} (${s.hoursNeeded}h)`).join(', '));
 
-  // Round-robin distribution with daily variation to avoid same routine
+  // Round-robin distribution with prime number offsets for true variety
   let currentSubjectIndex = 0;
   let allSubjectsScheduled = false;
   let dayIndex = 0;
 
+  // Use prime numbers for offsets to ensure no repeating patterns
+  const primeOffsets = [0, 5, 3, 7, 2]; // Different prime-based offsets for each day
+
   for (const day of workingDays) {
-    // Add random offset for each day to vary the schedule
-    // This prevents Monday-Friday from having identical routines
-    const dayOffset = (dayIndex * 3) % subjectSchedules.length; // Shift by 3 subjects each day
+    // Use prime number offset to ensure each day has unique schedule
+    const dayOffset = primeOffsets[dayIndex % primeOffsets.length];
     let daySubjectIndex = (currentSubjectIndex + dayOffset) % subjectSchedules.length;
 
     for (const slot of lectureSlots) {
