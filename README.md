@@ -239,7 +239,7 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-**Ashitosh Pandey**
+**Ashitosh Ingle**
 - GitHub: [@Ashitosh2004](https://github.com/Ashitosh2004)
 
 ## 🙏 Acknowledgments
