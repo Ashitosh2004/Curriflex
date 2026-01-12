@@ -327,8 +327,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 [React](https://reactjs.org/) • [TypeScript](https://www.typescriptlang.org/) • [Firebase](https://firebase.google.com/) • [Tailwind CSS](https://tailwindcss.com/) • [Radix UI](https://www.radix-ui.com/) • [Lucide Icons](https://lucide.dev/)
 
-Special thanks to [Uiverse.io](https://uiverse.io/) for the beautiful theme toggle design
-
 </div>
 
 ---
@@ -340,8 +338,8 @@ Special thanks to [Uiverse.io](https://uiverse.io/) for the beautiful theme togg
 **Need help?** We're here for you!
 
 📧 Email: support@curriflex.com  
-🐛 Issues: [GitHub Issues](https://github.com/yourusername/curriflex/issues)  
-💬 Discussions: [GitHub Discussions](https://github.com/yourusername/curriflex/discussions)
+🐛 Issues: [GitHub Issues](https://github.com/Ashitosh2004/curriflex/issues)  
+💬 Discussions: [GitHub Discussions](https://github.com/Ashitosh2004/curriflex/discussions)
 
 </div>
 
@@ -375,8 +373,8 @@ Special thanks to [Uiverse.io](https://uiverse.io/) for the beautiful theme togg
 
 **⭐ Star this repo if you find it helpful!**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/curriflex?style=social)](https://github.com/yourusername/curriflex/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/curriflex?style=social)](https://github.com/yourusername/curriflex/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/curriflex?style=social)](https://github.com/Ashitosh2004/curriflex/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/curriflex?style=social)](https://github.com/Ashitosh2004/curriflex/network/members)
 
 ---
 
