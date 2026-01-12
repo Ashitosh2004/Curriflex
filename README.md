@@ -373,8 +373,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **⭐ Star this repo if you find it helpful!**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/curriflex?style=social)](https://github.com/Ashitosh2004/curriflex/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/curriflex?style=social)](https://github.com/Ashitosh2004/curriflex/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Ashitosh2004/curriflex?style=social)](https://github.com/Ashitosh2004/curriflex/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Ashitosh2004/curriflex?style=social)](https://github.com/Ashitosh2004/curriflex/network/members)
 
 ---
 
