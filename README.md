@@ -1,181 +1,114 @@
-# Curriflex - Smart Schedule Genie
+<div align="center">
 
-**Automated College Timetable Management System**
+# 📚 Curriflex
 
-A modern, intelligent web application for generating conflict-free academic timetables for colleges and universities with minimal user input.
+### *Intelligent Timetable Management System*
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+**Automatically generate 100% conflict-free academic schedules with minimal effort**
 
-## 🎯 Features
+[![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-### Core Functionality
-- **Automated Timetable Generation** - Intelligent algorithm generates conflict-free schedules
-- **Conflict Detection** - Real-time detection and resolution of scheduling conflicts
-- **Multi-Department Support** - Manage multiple departments, years, and semesters
-- **Subject Allocation** - Assign subjects to faculty with department and year filtering
-- **Room Management** - Track and allocate classrooms and labs efficiently
+![Curriflex Banner](public/logo.png)
 
-### Advanced Features
-- **Time Configuration** - Customize lecture durations, breaks, and working hours
-- **Export Options** - Download timetables as PDF or Excel
-- **Dark Mode** - Beautiful dark/light theme support
-- **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
-- **Real-time Updates** - Firebase Firestore integration for instant data sync
+[Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Usage](#-usage) • [Tech Stack](#-tech-stack)
 
-### Data Management
-- **Departments** - Create and manage academic departments with unique codes
-- **Faculty** - Maintain faculty profiles with specializations
-- **Subjects** - Define subjects with types (Theory/Lab/Practical) and weekly hours
-- **Rooms** - Track available classrooms and laboratories
-- **Students** - Manage student records with department filtering
+</div>
+
+---
+
+## 🌟 Why Curriflex?
+
+> **Stop wasting hours on manual timetable creation!** Curriflex uses intelligent algorithms to generate perfect schedules in seconds, eliminating conflicts and optimizing resource allocation.
+
+<div align="center">
+
+| 🎯 **Smart** | 🚀 **Fast** | 💎 **Beautiful** | 🔧 **Flexible** |
+|:---:|:---:|:---:|:---:|
+| AI-powered scheduling | Generate in seconds | Modern glass UI | Fully customizable |
+
+</div>
+
+---
+
+## ✨ Features
+
+### 🎯 **Core Capabilities**
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🤖 Smart Auto-Generation
+- ✅ **Conflict-free scheduling** using advanced algorithms
+- ✅ **Unique daily schedules** with prime number distribution
+- ✅ **Real-time conflict detection**
+- ✅ **Optimal resource allocation**
+
+</td>
+<td width="50%">
+
+#### 📊 Complete Management
+- ✅ **Department & Year organization**
+- ✅ **Faculty workload tracking**
+- ✅ **Subject management** (Theory/Lab/Practical)
+- ✅ **Room & laboratory allocation**
+
+</td>
+</tr>
+</table>
+
+### 📄 **Professional Exports**
+
+| Format | Features |
+|--------|----------|
+| 📕 **PDF** | Single-page landscape • Orange theme • Logo integration • Dark borders |
+| 📗 **Excel** | Professional formatting • Multi-line cells • Orange headers • Auto-width columns |
+
+### 🎨 **Modern UI/UX**
+
+```
+✨ Liquid Glass Effects     🌓 Animated Theme Toggle
+🎭 Smooth Animations        🎨 Professional Dark Theme
+📱 Fully Responsive         ✍️ Poppins Typography
+```
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
-- Firebase account (for database)
-- Git
+
+```bash
+Node.js 18+  •  npm/yarn  •  Firebase Account
+```
 
 ### Installation
 
-1. **Clone the repository**
 ```bash
-git clone https://github.com/Ashitosh2004/Curriflex.git
-cd Curriflex
-```
+# 1️⃣ Clone the repository
+git clone https://github.com/yourusername/curriflex.git
+cd curriflex
 
-2. **Install dependencies**
-```bash
+# 2️⃣ Install dependencies
 npm install
-```
 
-3. **Configure Firebase**
-   - The `.env.local` file is already included with Firebase configuration
-   - Or create your own Firebase project and update the credentials
+# 3️⃣ Configure Firebase
+# Create .env.local with your Firebase credentials
+cp .env.example .env.local
 
-4. **Run development server**
-```bash
+# 4️⃣ Start development server
 npm run dev
+
+# 5️⃣ Open browser
+# Navigate to http://localhost:5173
 ```
 
-5. **Open in browser**
-   - Navigate to `http://localhost:5173`
+### 🔥 Firebase Configuration
 
-### Build for Production
-
-```bash
-npm run build
-npm run preview
-```
-
-## 📋 Usage Guide
-
-### Initial Setup
-
-1. **Configure Time Settings**
-   - Go to Settings → Time Configuration
-   - Set lecture duration, lab duration, breaks, and working hours
-   - Select working days (Monday-Friday recommended)
-
-2. **Add Departments**
-   - Navigate to Departments page
-   - Add your academic departments with unique codes
-
-3. **Add Faculty Members**
-   - Go to Faculty page
-   - Add faculty with their details and specializations
-
-4. **Add Subjects**
-   - Navigate to Subjects page
-   - Create subjects with type (Theory/Lab/Practical) and weekly hours
-
-5. **Add Rooms**
-   - Go to Rooms page
-   - Add classrooms and labs with capacity
-
-### Generating Timetables
-
-1. **Allocate Subjects**
-   - Go to Subject Allocation page
-   - Assign subjects to faculty for specific departments and years
-
-2. **Generate Timetable**
-   - Navigate to Timetable page
-   - Select department and year
-   - Click "Generate" button
-   - Review the generated timetable
-
-3. **Save and Export**
-   - Click "Save to Firebase" to store the timetable
-   - Export as PDF or Excel for distribution
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first styling
-- **Radix UI** - Accessible component primitives
-
-### Backend & Database
-- **Firebase Firestore** - NoSQL cloud database
-- **Firebase SDK** - Real-time data synchronization
-
-### Libraries
-- **React Router** - Client-side routing
-- **jsPDF** - PDF generation
-- **xlsx** - Excel export
-- **Lucide React** - Icon library
-- **date-fns** - Date utilities
-
-## 📁 Project Structure
-
-```
-Curriflex/
-├── src/
-│   ├── components/        # Reusable UI components
-│   │   ├── ui/           # Base UI components (Button, Card, etc.)
-│   │   ├── Layout.tsx    # Main layout wrapper
-│   │   ├── Sidebar.tsx   # Navigation sidebar
-│   │   └── TimetableGrid.tsx
-│   ├── contexts/         # React contexts
-│   │   └── AppContext.tsx
-│   ├── hooks/            # Custom React hooks
-│   ├── lib/              # Utility functions
-│   ├── pages/            # Page components
-│   │   ├── DashboardPage.tsx
-│   │   ├── DepartmentsPage.tsx
-│   │   ├── FacultyPage.tsx
-│   │   ├── SubjectsPage.tsx
-│   │   ├── RoomsPage.tsx
-│   │   ├── StudentsPage.tsx
-│   │   ├── SubjectAllocationPage.tsx
-│   │   ├── TimetablePage.tsx
-│   │   ├── TimeConfigPage.tsx
-│   │   └── SettingsPage.tsx
-│   ├── services/         # Firebase services
-│   │   └── firebaseService.ts
-│   ├── types/            # TypeScript type definitions
-│   │   └── index.ts
-│   ├── utils/            # Utility functions
-│   │   └── timetableGenerator.ts
-│   ├── App.tsx           # Root component
-│   └── main.tsx          # Entry point
-├── public/               # Static assets
-├── .env.local           # Environment variables (Firebase config)
-├── package.json         # Dependencies
-├── tsconfig.json        # TypeScript config
-├── vite.config.ts       # Vite configuration
-└── tailwind.config.js   # Tailwind CSS config
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-The `.env.local` file contains Firebase configuration:
+Create `.env.local` in the root directory:
 
 ```env
 VITE_FIREBASE_API_KEY=your_api_key
@@ -186,74 +119,269 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 ```
 
-### Firebase Setup
+---
 
-1. Create a Firebase project at https://console.firebase.google.com
-2. Enable Firestore Database
-3. Copy your Firebase config to `.env.local`
-4. Set up Firestore security rules (optional)
+## 📖 Usage Guide
 
-## 🎨 Customization
+### 🎬 Getting Started in 3 Steps
 
-### Theme Colors
-Edit `tailwind.config.js` to customize colors:
+```mermaid
+graph LR
+    A[⚙️ Configure Settings] --> B[📝 Add Data]
+    B --> C[🎯 Generate Timetable]
+    C --> D[💾 Save & Export]
+```
+
+<details>
+<summary><b>📋 Step 1: Initial Setup</b></summary>
+
+1. Navigate to **Settings** page
+2. Select institution type (School/College/University)
+3. Configure time slots and working days
+4. Set break and lunch periods
+
+</details>
+
+<details>
+<summary><b>📝 Step 2: Add Your Data</b></summary>
+
+| Order | Page | What to Add |
+|-------|------|-------------|
+| 1️⃣ | Departments | Add departments with names and years |
+| 2️⃣ | Faculty | Add faculty members |
+| 3️⃣ | Subjects | Add subjects with codes and hours |
+| 4️⃣ | Rooms | Add classrooms and labs |
+| 5️⃣ | Subject Allocation | Assign subjects to faculty |
+
+</details>
+
+<details>
+<summary><b>🎯 Step 3: Generate Timetable</b></summary>
+
+1. Go to **Timetable** page
+2. Select department and year
+3. Click **"Generate Timetable"**
+4. Review the generated schedule
+5. **Save** or **Export** (PDF/Excel)
+
+</details>
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+### Frontend
+![React](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+
+### Backend & Database
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+![Firestore](https://img.shields.io/badge/Firestore-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+
+### Libraries
+![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=flat-square&logo=radix-ui&logoColor=white)
+![Lucide](https://img.shields.io/badge/Lucide-F56565?style=flat-square&logo=lucide&logoColor=white)
+
+</div>
+
+---
+
+## 📁 Project Structure
+
+```
+curriflex/
+├── 📂 public/              # Static assets
+│   ├── 🖼️ logo.png         # App logo
+│   └── 🤖 robots.txt       # SEO config
+├── 📂 src/
+│   ├── 📂 components/      # Reusable components
+│   │   ├── 📂 ui/         # UI library
+│   │   ├── Layout.tsx     # Main layout
+│   │   └── ThemeToggle.tsx # Theme switcher
+│   ├── 📂 contexts/       # React contexts
+│   ├── 📂 lib/            # Utilities
+│   ├── 📂 pages/          # Page components
+│   ├── 📂 utils/          # Helper functions
+│   │   └── timetableGenerator.ts # Core algorithm
+│   └── 📂 types/          # TypeScript types
+├── ⚙️ vite.config.ts       # Vite config
+├── 🎨 tailwind.config.ts   # Tailwind config
+└── 📦 package.json         # Dependencies
+```
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+**☀️ Light Mode**
+```
+Primary: #FF8C00 (Orange)
+Background: #FFFFFF (White)
+Text: #1A1A1A (Dark Gray)
+```
+
+</td>
+<td align="center" width="50%">
+
+**🌙 Dark Mode**
+```
+Primary: #3B82F6 (Blue)
+Background: #1A202E (Slate)
+Accent: #06B6D4 (Cyan)
+```
+
+</td>
+</tr>
+</table>
+
+### Typography
+
+```
+Font Family: Poppins
+Weights: 300, 400, 500, 600, 700, 800
+```
+
+---
+
+## 🔧 Configuration
+
+### Time Slots
+
+Configure in **Time Config** page:
+- ⏰ Start and end times
+- ☕ Break periods
+- 🍽️ Lunch periods
+- 📅 Working days
+
+### Firebase Security Rules
 
 ```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {...},
-      secondary: {...},
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
     }
   }
 }
 ```
 
-### Time Configuration
-Adjust default time settings in `TimeConfigPage.tsx`
+---
 
-## 📝 Algorithm Details
+## 📊 Database Schema
 
-### Timetable Generation
-The system uses an intelligent round-robin algorithm that:
-1. Distributes subjects evenly across all working days
-2. Avoids faculty conflicts (same faculty, different classes)
-3. Prevents room double-booking
-4. Respects time slot constraints
-5. Handles lab sessions requiring consecutive slots
-
-### Conflict Detection
-Real-time conflict detection checks for:
-- Faculty availability conflicts
-- Room booking conflicts
-- Time slot overlaps
-- Subject allocation mismatches
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 👨‍💻 Author
-
-**Ashitosh Ingle**
-- GitHub: [@Ashitosh2004](https://github.com/Ashitosh2004)
-
-## 🙏 Acknowledgments
-
-- Built with modern web technologies
-- Designed for educational institutions
-- Focused on user experience and automation
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Contact: ashitoshingale8@gmail.com
+| Collection | Description |
+|------------|-------------|
+| 🏢 `departments` | Department information |
+| 👨‍🏫 `faculty` | Faculty members |
+| 📚 `subjects` | Subject definitions |
+| 🚪 `rooms` | Room/lab information |
+| 👨‍🎓 `students` | Student records |
+| 🔗 `subjectAllocations` | Faculty-subject assignments |
+| ⏱️ `timeConfig` | Time slot configuration |
+| 📅 `timetables` | Generated timetables |
 
 ---
 
-**Made with ❤️ for educational institutions**
+## 🤝 Contributing
+
+We welcome contributions! Here's how:
+
+```bash
+# 1. Fork the repository
+# 2. Create your feature branch
+git checkout -b feature/AmazingFeature
+
+# 3. Commit your changes
+git commit -m 'Add some AmazingFeature'
+
+# 4. Push to the branch
+git push origin feature/AmazingFeature
+
+# 5. Open a Pull Request
+```
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🌟 Acknowledgments
+
+<div align="center">
+
+**Built with amazing open-source projects**
+
+[React](https://reactjs.org/) • [TypeScript](https://www.typescriptlang.org/) • [Firebase](https://firebase.google.com/) • [Tailwind CSS](https://tailwindcss.com/) • [Radix UI](https://www.radix-ui.com/) • [Lucide Icons](https://lucide.dev/)
+
+Special thanks to [Uiverse.io](https://uiverse.io/) for the beautiful theme toggle design
+
+</div>
+
+---
+
+## 📧 Support & Contact
+
+<div align="center">
+
+**Need help?** We're here for you!
+
+📧 Email: support@curriflex.com  
+🐛 Issues: [GitHub Issues](https://github.com/yourusername/curriflex/issues)  
+💬 Discussions: [GitHub Discussions](https://github.com/yourusername/curriflex/discussions)
+
+</div>
+
+---
+
+## 🔄 Version History
+
+### 🎉 v1.0.0 - Current Release
+
+<details>
+<summary><b>✨ What's New</b></summary>
+
+- ✅ Smart timetable generation with unique daily schedules
+- ✅ Professional PDF and Excel exports with logo
+- ✅ Modern UI with liquid glass effects
+- ✅ Animated sun/moon theme toggle
+- ✅ Professional slate-blue dark theme
+- ✅ Complete CRUD operations for all entities
+- ✅ Firebase Firestore integration
+- ✅ Fully responsive design
+- ✅ Poppins typography
+- ✅ Blue/cyan color scheme for dark mode
+
+</details>
+
+---
+
+<div align="center">
+
+### 💝 Made with Love for Educational Institutions
+
+**⭐ Star this repo if you find it helpful!**
+
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/curriflex?style=social)](https://github.com/yourusername/curriflex/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/curriflex?style=social)](https://github.com/yourusername/curriflex/network/members)
+
+---
+
+**© 2026 Curriflex Team. All rights reserved.**
+
+[⬆ Back to Top](#-curriflex)
+
+</div>
