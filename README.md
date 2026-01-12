@@ -89,7 +89,7 @@ Node.js 18+  •  npm/yarn  •  Firebase Account
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/yourusername/curriflex.git
+git clone https://github.com/Ashitosh2004/Curriflex.git
 cd curriflex
 
 # 2️⃣ Install dependencies
